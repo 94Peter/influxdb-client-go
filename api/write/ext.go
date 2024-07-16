@@ -17,8 +17,10 @@ import (
 // and write result to the string builder
 func PointToLineProtocolBuffer(p *Point, sb *strings.Builder, precision time.Duration) {
 	escapeKey(sb, p.Name(), false)
-	sb.WriteRune(',')
 	for i, t := range p.TagList() {
+		if i == 0 {
+			sb.WriteRune(',')
+		}
 		if i > 0 {
 			sb.WriteString(",")
 		}
